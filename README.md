@@ -31,6 +31,15 @@ Configuration is per discount, in a JSON metafield, so merchants change threshol
 - `message`: shown at checkout; `%p` is replaced with the percentage.
 - `freeShipping`: when true on the qualifying tier, 100% off all delivery options (needs the SHIPPING discount class).
 
+## Verified on a live checkout
+
+Tested on a Shopify Plus development store (Ember & Bean demo catalogue, 17 products) with the config above:
+
+| Cart | Checkout showed |
+|------|-----------------|
+| Electric Burr Grinder $189 + Gooseneck Kettle $89 = **$278** | `SPEND & SAVE: 10% OFF −$27.80`, total $250.20 |
+| + Compact Espresso Machine $449 = **$727** | `SPEND & SAVE: 15% OFF −$109.05`, Standard and Express shipping both **FREE** (Express $15.00 struck through), total $617.95 |
+
 ## Layout
 
 ```
