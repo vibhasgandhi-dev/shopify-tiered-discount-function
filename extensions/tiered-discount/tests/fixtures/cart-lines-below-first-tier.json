@@ -1,0 +1,50 @@
+{
+  "payload": {
+    "export": "cart-lines-discounts-generate-run",
+    "target": "cart.lines.discounts.generate.run",
+    "input": {
+      "cart": {
+        "cost": {
+          "subtotalAmount": {
+            "amount": "99.99"
+          }
+        },
+        "lines": [
+          {
+            "id": "gid://shopify/CartLine/0",
+            "quantity": 1
+          }
+        ]
+      },
+      "discount": {
+        "discountClasses": [
+          "ORDER"
+        ],
+        "metafield": {
+          "jsonValue": {
+            "basis": "subtotal",
+            "message": "Spend & save: %p% off",
+            "tiers": [
+              {
+                "threshold": 100,
+                "percentage": 5
+              },
+              {
+                "threshold": 200,
+                "percentage": 10
+              },
+              {
+                "threshold": 500,
+                "percentage": 15,
+                "freeShipping": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    "output": {
+      "operations": []
+    }
+  }
+}

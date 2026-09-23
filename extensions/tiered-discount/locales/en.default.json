@@ -1,0 +1,4 @@
+{
+  "name": "Tiered discount (spend & save)",
+  "description": "Percentage off the order by subtotal or item-count tiers, with optional free shipping on the top tier. Configured per discount via a JSON metafield."
+}
