@@ -1,0 +1,31 @@
+# Run in the store's Admin GraphQL (2026-07) after the app is installed.
+# 1) Find the function id:
+query FunctionIds {
+  shopifyFunctions(first: 10) {
+    nodes { id title apiType app { title } }
+  }
+}
+
+# 2) Create the automatic discount and seed the config metafield in one call.
+mutation CreateTieredDiscount($functionId: String!) {
+  discountAutomaticAppCreate(
+    automaticAppDiscount: {
+      title: "Spend & save tiers"
+      functionId: $functionId
+      discountClasses: [ORDER, SHIPPING]
+      combinesWith: { productDiscounts: true, orderDiscounts: false, shippingDiscounts: false }
+      startsAt: "2026-01-01T00:00:00Z"
+      metafields: [
+        {
+          namespace: "$app"
+          key: "config"
+          type: "json"
+          value: "{\"basis\":\"subtotal\",\"message\":\"Spend & save: %p% off\",\"tiers\":[{\"threshold\":100,\"percentage\":5},{\"threshold\":200,\"percentage\":10},{\"threshold\":500,\"percentage\":15,\"freeShipping\":true}]}"
+        }
+      ]
+    }
+  ) {
+    automaticAppDiscount { discountId title status }
+    userErrors { field message }
+  }
+}
